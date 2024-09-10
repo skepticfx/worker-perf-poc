@@ -34,19 +34,10 @@ export class DurableInstanceFetch {
     constructor(state, env) {
       this.state = state;
       this.env = env;
-      this.bufferedData = generateRandomString(1024 * 1024 * 10).toString(); // ~ 10 MB;
+      this.bufferedData = new ArrayBuffer(1024 * 1024 * 10); // ~ 10 MB;
     }
   
     async fetch(request) {
       return new Response(this.bufferedData);
     }
-  }
-
-  function generateRandomString(length) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
   }

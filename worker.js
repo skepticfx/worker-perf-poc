@@ -38,9 +38,7 @@ export class DurableInstanceFetch {
     }
   
     async fetch(request) {
-      const start = Date.now();
-      const res = Response.json({results: this.bufferedData, meta: {duration: Date.now() - start}});
-      return res;
+      return new Response(this.bufferedData);
     }
   }
 

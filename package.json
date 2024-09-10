@@ -1,0 +1,8 @@
+{
+    "name": "worker-perf-poc",
+    "version": "0.0.1",
+    "private": true,
+    "devDependencies": {
+      "wrangler": "^3.75.0"
+    }
+  }

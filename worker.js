@@ -8,37 +8,26 @@ export default {
     // get the singleton DO instance's stub in WNAM
     const startStub = Date.now();
     const stub = env.DurableInstanceFetch.get(env.DurableInstanceFetch.idFromName("1"), { locationHint: 'wnam' });
-    result.durations.gettingDurableObjectStub = Date.now() - startStub;
-
-    result = {
-      type: parsingType,
-      ttfb: `${ttfb}ms`,
-      downloadTime: `${ttd}ms`,
-      totalTime: `${totalTime}ms`,
-      totalBytes: resLen,
-    };
+    result.durations.getDurableObjectStub = `${Date.now() - startStub}ms`;
 
     // DO stub.fetch()
     const startFetch = Date.now();
     const res = await stub.fetch(new Request("http://durable-object/buffered", request));
-    result.durations.stubFetch = Date.now() - startFetch;
+    result.durations.stubFetch = `${Date.now() - startFetch}ms`;
+    result.type = "durable-object-fetch-array-buffer";
 
     const startBody = Date.now();
-    let ttd = 0;
-    let resLen = 0;
-    let body;
-    body = await res.arrayBuffer();
-    ttd = Date.now() - startDownload;
-    resLen = vody.byteLength;
+    const body = await res.arrayBuffer();
+    result.durations.bodyDownload = `${Date.now() - startBody}ms`;
+    result.bytesDownloaded = body.byteLength;
 
+    // total
     result.durations.totalTime = Date.now() - start;
 
-
-    return result;
+    return Response.json(result);
   },
 };
 
-// Durable Object
 
 // Durable object Class via Fetch
 export class DurableInstanceFetch {

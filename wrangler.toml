@@ -1,4 +1,4 @@
-name = "worker-perf-poc-2"
+name = "worker-perf-poc"
 main = "worker.js"
 compatibility_date = "2024-08-29"
 workers_dev = true

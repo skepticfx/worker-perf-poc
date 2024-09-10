@@ -22,7 +22,7 @@ export default {
     result.bytesDownloaded = body.byteLength;
 
     // total
-    result.durations.totalTime = Date.now() - start;
+    result.durations.totalTime = `${Date.now() - start}ms`;
 
     return Response.json(result);
   },

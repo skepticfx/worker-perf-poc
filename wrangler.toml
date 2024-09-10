@@ -1,0 +1,13 @@
+name = "worker-perf-poc"
+main = "worker.js"
+compatibility_date = "2024-08-29"
+workers_dev = true
+
+[[durable_objects.bindings]]
+name = "DurableInstanceFetch"
+class_name = "DurableInstanceFetch"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["DurableInstanceFetch"]
+
